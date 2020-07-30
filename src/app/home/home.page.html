@@ -1,20 +1,24 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      To-Do
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-item id="addTodo">
+      <ion-input [(ngModel)]="addedTodo" placeholder="Add Todo here"></ion-input>
+      <ion-button (click)="add()"><ion-icon name="add"></ion-icon></ion-button>
+    </ion-item>
+    <ion-list>
+      <ion-item *ngFor="let todo of todoList; let i = index" id="tasks">
+        <ion-checkbox [checked]="todo.completed" (ionChange)="complete(i)"></ion-checkbox>
+        <p id="title">{{ todo.title }}</p>
+        <ion-button (click)="update(i)" fill="clear" id="updateBtn"><ion-icon name="create"></ion-icon></ion-button>
+        <ion-button (click)="delete(i)" fill="clear" id="deleteBtn"><ion-icon name="trash"></ion-icon></ion-button>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>
