@@ -14,7 +14,7 @@
     </ion-item>
     <ion-list>
       <ion-item *ngFor="let todo of todoList; let i = index" id="tasks">
-        <ion-checkbox [checked]="todo.completed" (ionChange)="complete(i)"></ion-checkbox>
+        <ion-checkbox [(ngModel)]="todo.completed" (ionChange)="save()"></ion-checkbox>
         <p id="title">{{ todo.title }}</p>
         <ion-button (click)="update(i)" fill="clear" id="updateBtn"><ion-icon name="create"></ion-icon></ion-button>
         <ion-button (click)="delete(i)" fill="clear" id="deleteBtn"><ion-icon name="trash"></ion-icon></ion-button>

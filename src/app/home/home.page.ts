@@ -29,17 +29,20 @@ export class HomePage {
     });
   }
 
+  save() {
+    localStorage.setItem("todos", JSON.stringify(this.todoList));
+  }
+
   add() {
     if(this.addedTodo != '') {
-      console.log(this.addedTodo);
       this.todoList.push({title: this.addedTodo, completed: false});
-      console.log(this.todoList);
-      localStorage.setItem("todos", JSON.stringify(this.todoList));
+      this.save();
     } else {
         this.emptyAlert();
     }
   }
 
+  /*
   complete(index: number) {
     if(this.todoList[index].completed === true) {
       this.todoList[index].completed = false;
@@ -49,6 +52,7 @@ export class HomePage {
     console.log(this.todoList);
     localStorage.setItem("todos", JSON.stringify(this.todoList));
   }
+  */
 
   async update(index: number) {
     let alert = await this.alertController.create({
@@ -63,7 +67,6 @@ export class HomePage {
 
   delete(index: number) {
     this.todoList.splice(index, 1);
-    localStorage.setItem("todos", JSON.stringify(this.todoList));
+    this.save();
   }
-
 }
